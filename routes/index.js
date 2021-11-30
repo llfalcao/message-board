@@ -17,16 +17,10 @@ const messages = [
 
 // GET homepage
 router.get('/', function (req, res, next) {
-  const formattedMessages = messages.map((msg) => {
-    msg.added = DateTime.fromJSDate(msg.added).toLocaleString(
-      DateTime.DATETIME_MED,
-    );
-    return msg;
-  });
-  console.log(1, formattedMessages);
+  // TODO: Fix date format
   res.render('index', {
     title: 'Mini Message Board',
-    messages: formattedMessages,
+    messages,
   });
 });
 
