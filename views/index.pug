@@ -3,11 +3,12 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href="/new") New message
+  a(href="/new")
+    button(class="btn btn-primary mb-3") New message
   
   ul
     each message in messages
-      li
-        p= message.text
-        p= message.user
-        p= message.added
+      li(class="border border-secondary rounded mb-3 p-2 message")
+        p(class="mb-3")= message.text
+        p(class="mb-0")= message.user
+        p(class="mb-0 text-muted")= message.added

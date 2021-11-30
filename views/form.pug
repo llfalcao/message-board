@@ -1,17 +1,13 @@
 extends layout
 
 block content
-  h1= title
+  h1(class="mb-4")= title
 
-  form(action="/new", method="post") 
-    label(for="author" method="POST" action="/new") Author
-    br
-    input#author(type="text", name="user")
-    br
-    br
-    label(for="author") Message
-    br
-    input#message(type="text", name="message")
-    br
-    br
-    input(type="submit", value="Submit")
+  form(action="/new", method="post")
+    div(class="form-group mb-3")
+      label(for="author" method="POST" action="/new") Author
+      input#author(class="form-control" type="text", name="user")
+    div(class="form-group mb-3")
+      label(for="author") Message
+      textarea#message(class="form-control" name="message", cols="30", rows="5")
+    input(class="btn btn-primary" type="submit", value="Submit")

@@ -1,4 +1,5 @@
 const express = require('express');
+const { DateTime } = require('luxon');
 const router = express.Router();
 
 const messages = [
@@ -14,20 +15,31 @@ const messages = [
   },
 ];
 
-/* GET home page. */
+// GET homepage
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Mini Message Board', messages });
+  const formattedMessages = messages.map((msg) => {
+    msg.added = DateTime.fromJSDate(msg.added).toLocaleString(
+      DateTime.DATETIME_MED,
+    );
+    return msg;
+  });
+  console.log(1, formattedMessages);
+  res.render('index', {
+    title: 'Mini Message Board',
+    messages: formattedMessages,
+  });
 });
 
+// GET new message page
 router.get('/new', function (req, res, next) {
-  res.render('form', { title: 'New message' });
+  res.render('form', { title: 'Compose' });
 });
 
+// POST new message
 router.post('/new', function (req, res, next) {
   const { user, message: text } = req.body;
   messages.push({ text, user, added: new Date() });
   res.redirect('/');
-  // Fix infinite loading
 });
 
 module.exports = router;
