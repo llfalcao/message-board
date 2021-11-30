@@ -26,6 +26,7 @@ router.get('/new', function (req, res, next) {
 router.post('/new', function (req, res, next) {
   const { user, message: text } = req.body;
   messages.push({ text, user, added: new Date() });
+  res.redirect('/');
   // Fix infinite loading
 });
 
