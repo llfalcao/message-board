@@ -1,23 +1,21 @@
 const express = require('express');
-const { DateTime } = require('luxon');
 const router = express.Router();
 
 const messages = [
   {
     text: 'Hi there!',
-    user: 'Dietrich',
+    user: 'Helen',
     added: new Date(),
   },
   {
-    text: 'Hello World!',
-    user: 'Ophelia',
+    text: 'To be, or not to be, that is the question.',
+    user: 'Bill',
     added: new Date(),
   },
 ];
 
 // GET homepage
 router.get('/', function (req, res, next) {
-  // TODO: Fix date format
   res.render('index', {
     title: 'Mini Message Board',
     messages,
